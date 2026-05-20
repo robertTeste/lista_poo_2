@@ -1,33 +1,38 @@
 package principal;
 
-import interfaces.Imprimivel;
-import interfaces.Contrato;
-import interfaces.Relatorio;
+// Importando os utilitários de lista do Java
+import java.util.ArrayList;
+import java.util.List;
+
+// Importando as classes de formas do seu pacote abstratas
+import abstratas.Forma;
+import abstratas.Circulo;
+import abstratas.Retangulo;
 
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("=== Executando Lista de POO ===");
-
-        Contrato meuContrato = new Contrato();
-        Relatorio meuRelatorio = new Relatorio();
-
-        System.out.println("--- Testando o Exercício 17 ---");
+        System.out.println("=== Executando Lista de POO ===\n");
 
         /*
-         * Chamamos o mesmo método estático passando objetos de classes diferentes.
-         * O polimorfismo de interface entra em ação aqui!
+         *
+         * Criamos um ArrayList que armazena referências do tipo genérico 'Forma'.
          */
-        imprimirDocumento(meuContrato);  // Passando o seu Contrato
-        imprimirDocumento(meuRelatorio); // Passando o Relatório
-    }
+        List<Forma> listaFormas = new ArrayList<>();
 
-    /*
-     * Este método recebe qualquer objeto cujo tipo implemente a interface 'Imprimivel'.
-     * Ele não precisa saber se é um Contrato ou um Relatório, apenas chama o método do contrato.
-     */
-    public static void imprimirDocumento(Imprimivel doc) {
-        // O Java descobre o tipo real em tempo de execução e roda o @Override correto
-        doc.imprimir();
+        listaFormas.add(new Circulo(2.5));
+        listaFormas.add(new Retangulo(4.0, 5.0));
+        listaFormas.add(new Circulo(5.0));
+
+        System.out.println("--- Calculando Áreas Polimorficamente ---");
+
+        /*
+         * O grande objetivo do exercício: UM único laço 'for' consegue calcular
+         * a área de qualquer objeto da lista, disparando o cálculo correto de
+         * cada figura geométrica em tempo de execução.
+         */
+        for (Forma forma : listaFormas) {
+            System.out.println("Área da forma: " + forma.calcularArea());
+        }
     }
 }

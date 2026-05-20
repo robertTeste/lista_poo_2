@@ -1,42 +1,33 @@
 package principal;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import polimorfismo.Animal;
-import polimorfismo.Cachorro;
-import polimorfismo.Gato;
+import interfaces.Imprimivel;
+import interfaces.Contrato;
+import interfaces.Relatorio;
 
 public class Main {
 
     public static void main(String[] args) {
         System.out.println("=== Executando Lista de POO ===");
 
-        /*
-         Criamos um ArrayList que aceita QUALQUER objeto que seja um 'Animal'.
-         Usamos a interface List na declaração (boa prática de POO).
-         */
-        List<Animal> listaAnimais = new ArrayList<>();
+        Contrato meuContrato = new Contrato();
+        Relatorio meuRelatorio = new Relatorio();
 
-        listaAnimais.add(new Cachorro("Rex"));
-        listaAnimais.add(new Gato("Mimi"));
-        listaAnimais.add(new Cachorro("Thor"));
-        listaAnimais.add(new Gato("Garfield"));
-
-        System.out.println("--- Percorrendo a Lista com For-Each ---");
+        System.out.println("--- Testando o Exercício 17 ---");
 
         /*
-         O laço for-each passa por cada item da lista.
-         A variável temporária 'animal' trata todos de forma genérica.
+         * Chamamos o mesmo método estático passando objetos de classes diferentes.
+         * O polimorfismo de interface entra em ação aqui!
          */
-        for (Animal animal : listaAnimais) {
-            animal.emitirSom();
-        }
+        imprimirDocumento(meuContrato);  // Passando o seu Contrato
+        imprimirDocumento(meuRelatorio); // Passando o Relatório
+    }
 
-        /*
-         Repare que o laço 'for' não faz nenhuma validação do tipo:
-         "se for cachorro, faz auau; se for gato, faz miau". Se amanhã você criar uma classe 'Passaro' que estende Animal, basta adicioná-la
-         na lista e este 'for' continuará funcionando perfeitamente sem mudar uma única linha!
-         */
+    /*
+     * Este método recebe qualquer objeto cujo tipo implemente a interface 'Imprimivel'.
+     * Ele não precisa saber se é um Contrato ou um Relatório, apenas chama o método do contrato.
+     */
+    public static void imprimirDocumento(Imprimivel doc) {
+        // O Java descobre o tipo real em tempo de execução e roda o @Override correto
+        doc.imprimir();
     }
 }

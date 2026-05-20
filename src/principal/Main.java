@@ -1,5 +1,8 @@
 package principal;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import polimorfismo.Animal;
 import polimorfismo.Cachorro;
 import polimorfismo.Gato;
@@ -10,19 +13,30 @@ public class Main {
         System.out.println("=== Executando Lista de POO ===");
 
         /*
-         Declaramos as variáveis usando o tipo abstrato/genérico 'Animal'.
-         Porém, instanciamos objetos concretos 'Cachorro' e 'Gato'.
+         Criamos um ArrayList que aceita QUALQUER objeto que seja um 'Animal'.
+         Usamos a interface List na declaração (boa prática de POO).
          */
-        Animal animal1 = new Cachorro("Rex");
-        Animal animal2 = new Gato("Mimi");
+        List<Animal> listaAnimais = new ArrayList<>();
 
-        System.out.println("--- Testando Polimorfismo ---");
+        listaAnimais.add(new Cachorro("Rex"));
+        listaAnimais.add(new Gato("Mimi"));
+        listaAnimais.add(new Cachorro("Thor"));
+        listaAnimais.add(new Gato("Garfield"));
+
+        System.out.println("--- Percorrendo a Lista com For-Each ---");
 
         /*
-        Na compilação, o Java apenas sabe que 'animal1' e 'animal2' são Animais.
-        Em tempo de execução, o Java descobre qual é o tipo REAL do objeto na memória e direciona a execução para o método @Override correto.
+         O laço for-each passa por cada item da lista.
+         A variável temporária 'animal' trata todos de forma genérica.
          */
-        animal1.emitirSom(); // Saída no console: Rex: Au au!
-        animal2.emitirSom(); // Saída no console: Mimi: Miau!
+        for (Animal animal : listaAnimais) {
+            animal.emitirSom();
+        }
+
+        /*
+         Repare que o laço 'for' não faz nenhuma validação do tipo:
+         "se for cachorro, faz auau; se for gato, faz miau". Se amanhã você criar uma classe 'Passaro' que estende Animal, basta adicioná-la
+         na lista e este 'for' continuará funcionando perfeitamente sem mudar uma única linha!
+         */
     }
 }

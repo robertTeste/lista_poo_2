@@ -1,23 +1,23 @@
 package principal;
 
-import interfaces.Contrato;
-import interfaces.Relatorio;
+import interfaces.Barco;
+import interfaces.Peixe;
 
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("=== Executando Lista de POO ===\n");
+        System.out.println("=== Executando Lista de POO ===");
 
-        Relatorio relatorio = new Relatorio();
-        Contrato contrato = new Contrato();
+        Barco meuBarco = new Barco();
+        Peixe meuPeixe = new Peixe();
 
-        System.out.println("--- Testando as Implementações da Interface ---");
-        relatorio.imprimir();
-        contrato.imprimir();
+        System.out.println("--- Testando a Interface Navegavel ---");
+        meuBarco.navegar();
+        meuPeixe.navegar();
 
         /*
-         Diferente da herança de classes (onde uma classe só pode herdar de UMA classe pai), no Java uma classe pode implementar MÚLTIPLAS interfaces ao mesmo tempo.
-         Isso traz uma flexibilidade enorme para o design do seu código.
+         Repare que 'Barco' (um objeto mecânico) e 'Peixe' (um animal) não possuem nenhuma relação de parentesco por herança (não faria sentido herdar da mesma classe).
+         No entanto, ambos compartilham o COMPORTAMENTO de navegar. A interface serve exatamente para isso: unir classes totalmente diferentes através de uma ação comum.
          */
     }
 }

@@ -1,27 +1,23 @@
 package principal;
 
-import abstratas.ContaCorrente;
-import abstratas.ContaPoupanca;
+import interfaces.Contrato;
+import interfaces.Relatorio;
 
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("=== Executando Lista de POO ===");
+        System.out.println("=== Executando Lista de POO ===\n");
 
-        ContaCorrente cc = new ContaCorrente();
-        cc.depositar(100.0);
-        cc.sacar(150.0);
+        Relatorio relatorio = new Relatorio();
+        Contrato contrato = new Contrato();
 
-        System.out.println("--- Saldo Conta Corrente ---");
-        System.out.println("Saldo atual: R$ " + cc.getSaldo());
+        System.out.println("--- Testando as Implementações da Interface ---");
+        relatorio.imprimir();
+        contrato.imprimir();
 
-        System.out.println("----------------------------------------");
-
-        ContaPoupanca poupanca = new ContaPoupanca();
-        poupanca.depositar(100.0);
-        poupanca.sacar(150.0);
-
-        System.out.println("--- Saldo Conta Poupança ---");
-        System.out.println("Saldo atual: R$ " + poupanca.getSaldo());
+        /*
+         Diferente da herança de classes (onde uma classe só pode herdar de UMA classe pai), no Java uma classe pode implementar MÚLTIPLAS interfaces ao mesmo tempo.
+         Isso traz uma flexibilidade enorme para o design do seu código.
+         */
     }
 }

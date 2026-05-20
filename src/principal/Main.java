@@ -1,25 +1,17 @@
 package principal;
-
-import heranca.Funcionario;
-import heranca.Gerente;
+import abstratas.Carro;
+import abstratas.Moto;
+import abstratas.Veiculo;
 public class Main {
-
     public static void main(String[] args) {
-        System.out.println("=== Executando Lista de POO ===");
+        Veiculo meuCarro = new Carro();
+        Veiculo minhaMoto = new Moto();
 
-        Funcionario func = new Funcionario("João Silva", 3000.0);
-        Gerente ger = new Gerente("Robert", 8000.0);
+        meuCarro.buzinar();
+        minhaMoto.buzinar();
 
-        System.out.println("--- Dados do Funcionário ---");
-        System.out.println("Nome: " + func.getNome());
-        System.out.println("Salário: R$ " + func.getSalario());
-        System.out.println("Bônus (10%): R$ " + func.calcularBonus());
-
-        System.out.println("----------------------------------------");
-
-        System.out.println("--- Dados do Gerente ---");
-        System.out.println("Nome: " + ger.getNome());
-        System.out.println("Salário: R$ " + ger.getSalario());
-        System.out.println("Bônus Sobrescrito (20%): R$ " + ger.calcularBonus());
+        /*TESTE DO EXERCÍCIO: Tente descommentar a linha abaixo para ver o que acontece:
+        Veiculo meuVeiculo = new Veiculo();
+        O IntelliJ vai dar um erro de compilação dizendo: 'Veiculo' is abstract; cannot be instantiated*/
     }
 }
